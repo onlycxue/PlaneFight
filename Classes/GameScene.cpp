@@ -19,6 +19,7 @@
 #include "GameScene.h"
 
 USING_NS_CC;
+using namespace CocosDenshion;
 
 #define FIX_POS(_pos,_min,_max) \
 if (_pos < _min)  \
@@ -57,10 +58,8 @@ bool GameScene::init()
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("plane00.plist");
 	//m_plane = CCSprite::create();
 	//bool w = m_plane->initWithSpriteFrameName("hero1.png");
+
 	m_heroPlane = StrongHeroPlane::create();
-	
-	//CCLOG("#####################################\n");
-	//CCLOG("#####################################\n");
 	m_heroPlane->setAnchorPoint(ccp(0.5, 0));
 	m_heroPlane->setPosition(ccp(size.width / 2, 0));
 	addChild(m_heroPlane);
@@ -73,8 +72,11 @@ bool GameScene::init()
 	setTouchEnabled(true);
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(GameScene::gameLogic), 2);
-	CCLog("init over");
-	//addEnemyPlane();
+
+	
+	//Ìí¼ÓÒôÐ§
+	SimpleAudioEngine::sharedEngine()->preloadEffect("shoot.mp3");
+	SimpleAudioEngine::sharedEngine()->setEffectsVolume(0.5f);
 	return true;
 	
 }
@@ -190,7 +192,9 @@ void GameScene::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEven
 
 	//addChild(projectile);
 	//m_projectileArray->addObject(projectile);
+	
 	m_heroPlane->createBullet(YellowBullet::create());
+	SimpleAudioEngine::sharedEngine()->playEffect("shoot.mp3", false);
 	
 }
 void GameScene::collisionCheck()
