@@ -10,7 +10,12 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/HelloWorldScene.cpp \
 				   ../../Classes/GameScene.cpp \
-				   ../../Classes/EnemyPlane.cpp
+				   ../../Classes/EnemyPlane.cpp \
+				   ../../Classes/Bullet.cpp \
+				   ../../Classes/Plane.cpp \
+				   ../../Classes/HeroPlane.cpp \
+				   ../../Classes/GameOver.cpp
+				   
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
